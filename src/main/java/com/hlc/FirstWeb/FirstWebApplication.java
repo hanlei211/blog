@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-@MapperScan("com.hlc.FirstWeb.model")
+@MapperScan("com.hlc.FirstWeb.mapper")
 public class FirstWebApplication {
 
     public static void main(String[] args) {
