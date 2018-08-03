@@ -1,36 +1,24 @@
 package com.hlc.FirstWeb.shiro;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
-import io.z77z.entity.SysUser;
-import io.z77z.service.SysPermissionService;
-import io.z77z.service.SysRoleService;
-import io.z77z.service.SysUserService;
-import io.z77z.util.MyDES;
-
-import org.apache.log4j.Logger;
+import com.hlc.FirstWeb.entity.SysUser;
+import com.hlc.FirstWeb.service.SysPermissionService;
+import com.hlc.FirstWeb.service.SysRoleService;
+import com.hlc.FirstWeb.service.SysUserService;
+import com.hlc.FirstWeb.util.MyDES;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AccountException;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.DisabledAccountException;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * shiro身份校验核心类
@@ -40,6 +28,8 @@ import org.springframework.data.redis.core.ValueOperations;
  */
 
 public class MyShiroRealm extends AuthorizingRealm {
+
+	private static final Logger logger = LoggerFactory.getLogger(MyShiroRealm.class);
 
 	@Autowired
 	private SysUserService sysUserService;
@@ -62,7 +52,6 @@ public class MyShiroRealm extends AuthorizingRealm {
 	/**
 	 * 认证信息.(身份验证) : Authentication 是用来验证用户身份
 	 * 
-	 * @param token
 	 * @return
 	 * @throws AuthenticationException
 	 */
@@ -110,7 +99,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 			//清空登录计数
 			opsForValue.set(SHIRO_LOGIN_COUNT+name, "0");
 		}
-		Logger.getLogger(getClass()).info("身份认证成功，登录用户："+name);
+		logger.info("身份认证成功，登录用户："+name);
 		return new SimpleAuthenticationInfo(user, password, getName());
 	}
 

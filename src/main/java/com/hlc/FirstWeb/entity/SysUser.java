@@ -47,7 +47,7 @@ public class SysUser extends Model<SysUser> {
 	/**
      * 最后修改人Id
      */
-	@TableField(value="last_update_name_id",validate=FieldStrategy.IGNORED)
+	@TableField(value="last_update_name_id",strategy=FieldStrategy.IGNORED)
 	private String lastUpdateNameId;
 	/**
      * 创建人Id
@@ -57,7 +57,7 @@ public class SysUser extends Model<SysUser> {
 	/**
      * 最后修改时间
      */
-	@TableField(value="last_update_time",validate=FieldStrategy.IGNORED)
+	@TableField(value="last_update_time",strategy=FieldStrategy.IGNORED)
 	private Date lastUpdateTime;
 	/**
      * 创建时间

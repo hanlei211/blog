@@ -1,18 +1,17 @@
 package com.hlc.FirstWeb.shiro;
 
-import io.z77z.entity.SysPermissionInit;
-import io.z77z.service.SysPermissionInitService;
-
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.hlc.FirstWeb.entity.SysPermissionInit;
+import com.hlc.FirstWeb.service.SysPermissionInitService;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
